@@ -1,13 +1,10 @@
 const Hapi = require("hapi");
+const routes = require("./routes.js")
 const server = new Hapi.Server();
+
 server.connection({port: 3000});
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: function (request, reply) {
-        reply('Hello world!');
-    }
-});
+
+server.route(routes);
 
 server.start((err) => {
     if (err) {
@@ -15,23 +12,5 @@ server.start((err) => {
     }
     console.log(`Server running at: ${server.info.uri}`);
 });
-
-server.route({
-      method: 'GET',
-      path: '/pokemons',
-      handler: function (request, reply) {
-          const data = require("./data.json");
-          reply(data);
-      }
-});
-
-server.route({
-    method: 'GET',
-    path: '/days',
-    handler: function (request, reply) {
-        reply([]);
-    }
-});
-
 
 module.exports = server
