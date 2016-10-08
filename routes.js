@@ -12,6 +12,11 @@ module.exports = [
         handler: handlers.getAllPokemons
     },
     {
+        method: 'POST',
+        path: '/pokemons',
+        handler: handlers.addPokemon
+    },
+    {
         method: 'GET',
         path: '/days',
         handler: handlers.getDays
