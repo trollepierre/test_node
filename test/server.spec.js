@@ -12,21 +12,38 @@ describe('Server', () => {
         });
     });
 
-  describe('GET /pokemons', () => {
-      it('should return a 200', (done) => {
+    describe('GET /pokemons', () => {
+        it('should return a 200', (done) => {
             server.inject('/pokemons', (res) => {
                 expect(res.statusCode).to.equal(200);
                 done();
+            });
         });
-    });
 
-    it('should return a list of pokemons', (done) => {
-        server.inject('/pokemons', (res) => {
-            expect(res.result).to.deep.equal([]);
-            done();
+        it('should return an array', (done) => {
+           server.inject('/pokemons', (res) => {
+             expect(res.result).to.be.an('array');
+             done();
+           });
+         });
+
+
+        it('should return a list of pokemons', (done) => {
+            server.inject('/pokemons', (res) => {
+                const pokemons = [
+                          { name: "pikachu" },
+                          { name: "dracaufeu" },
+                          { name: "Rattata" },
+                          { name: "Roucool" },
+                          { name: "Nidoran" },
+                          { name: "Hypocéan" },
+                          { name: "Kabuto" }
+                        ];
+                expect(res.result).to.deep.equal(pokemons);
+                done();
+            });
         });
     });
-  });
 
     describe('GET /days', () => {
         it('should return a 200', (done) => {
