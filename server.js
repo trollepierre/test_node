@@ -15,3 +15,13 @@ server.start((err) => {
     }
     console.log(`Server running at: ${server.info.uri}`);
 });
+
+server.route({
+      method: 'GET',
+      path: '/pokemons',
+      handler: function (request, reply) {
+        reply([]);
+      }
+});
+
+module.exports = server
