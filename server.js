@@ -24,4 +24,13 @@ server.route({
       }
 });
 
+server.route({
+    method: 'GET',
+    path: '/days',
+    handler: function (request, reply) {
+        reply([]);
+    }
+});
+
+
 module.exports = server

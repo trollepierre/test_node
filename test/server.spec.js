@@ -13,10 +13,10 @@ describe('Server', () => {
     });
 
   describe('GET /pokemons', () => {
-    it('should return a 200', (done) => {
-        server.inject('/pokemons', (res) => {
-            expect(res.statusCode).to.equal(200);
-            done();
+      it('should return a 200', (done) => {
+            server.inject('/pokemons', (res) => {
+                expect(res.statusCode).to.equal(200);
+                done();
         });
     });
 
@@ -27,4 +27,20 @@ describe('Server', () => {
         });
     });
   });
+
+    describe('GET /days', () => {
+        it('should return a 200', (done) => {
+        server.inject('/days', (res) => {
+            expect(res.statusCode).to.equal(200);
+            done();
+            });
+        });
+
+        it('should return a list of days', (done) => {
+            server.inject('/days', (res) => {
+            expect(res.result).to.deep.equal([]);
+            done();
+            });
+        });
+    });
 });
